@@ -1,11 +1,10 @@
 #Multi-stage docker file
 # Build stage
 FROM maven:3.8.3-openjdk-17-slim AS build
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn package
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
+WORKDIR /usr/src/app/
+RUN mvn clean package
 
 # Deploy stage
 FROM  openjdk:17-jdk-alpine
