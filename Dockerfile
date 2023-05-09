@@ -5,12 +5,13 @@ COPY src /usr/src/app/src
 COPY pom.xml /usr/src/app
 WORKDIR /usr/src/app/
 RUN mvn clean package
+COPY target/*.jar sba-app.jar
 
 # Deploy stage
 FROM  openjdk:17-jdk-alpine
 WORKDIR /app
-COPY --from=build /usr/src/app/target/myapp.jar .
-CMD ["java", "-jar", "myapp.jar"]
+COPY --from=build /app/sba-app.jar .
+CMD ["java", "-jar", "sba-app.jar"]
 
 
 
