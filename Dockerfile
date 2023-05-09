@@ -8,7 +8,7 @@ COPY src ./src
 RUN mvn package
 
 # Deploy stage
-FROM openjdk:17-jre-slim
+FROM  openjdk:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/myapp.jar .
 CMD ["java", "-jar", "myapp.jar"]
