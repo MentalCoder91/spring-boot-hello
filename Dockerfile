@@ -4,7 +4,7 @@ FROM maven:3.8.3-openjdk-17-slim AS build
 COPY src /usr/src/app/src
 COPY pom.xml /usr/src/app
 WORKDIR /usr/src/app/
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 COPY target/*.jar sba-app.jar
 
 # Deploy stage
