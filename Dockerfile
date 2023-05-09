@@ -9,7 +9,7 @@ RUN mvn clean package
 # Deploy stage
 FROM  openjdk:17-jdk-alpine
 WORKDIR /app
-COPY --from=build /app/target/myapp.jar .
+COPY --from=build /usr/src/app/target/myapp.jar .
 CMD ["java", "-jar", "myapp.jar"]
 
 
